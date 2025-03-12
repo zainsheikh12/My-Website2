@@ -1,39 +1,374 @@
-<DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-     <title>Home Page</title>
-<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milford Tuition Center</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #35424a;
+            scroll-behavior: smooth; /* Enable smooth scrolling */
+        }
+
+        header {
+            background: url('header-bg.jpg') no-repeat center center/cover; /* Background image */
+            color: #ffffff;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f4f4f4;
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: #35424a;
+            border-bottom: 2px solid #35424a;
+            padding-bottom: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+        }
+
+        input, textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background: #35424a;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2c3e50;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #35424a;
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .contact-info {
+            font-size: 24px;
+            font-weight: bold;
+            color: #35424a;
+            text-align: center;
+        }
+
+        .testimonials {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial {
+            margin: 10px 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        .social-media {
+            margin-top: 10px;
+        }
+
+        .social-media a {
+            margin: 0 10px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .social-media a:hover {
+            color: #f4f4f4;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px; /* Could be more or less, depending on screen size */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
 <body>
-     <body>
-    <h1>Welcome</h1>
-     <h3><b>This Website was developed for testing and research puposes.</b></h3>
-     <hr/>
-     <h1>Who Are We?</h1>
-     <hr />
-     <p>We are <b>Milford Tution Center.</b><p><b>We Operate in Midrand,Carlswald ,<b><abbr title="Johannesburg">JHB</abbr></p>
-     <p>We love to teach so you shoudld join us <abbr title="As Soon As Possible"><i>ASAP</i></abbr><p>Please use this link to go to our official website:</p>
-     <h2><a href="https://www.milfordtutor.co.za/">milfordtutor.org</a></h2>   
-     <hr/>    
-     <body>
-     
-     <h1>What services do we provide?</h1>
-     <p>We here at <em>Milford Tutuion Centre </em>Provide the following: <b>Milford Tution Center provides a coaching classes that helps students to suceed in their studies. At Milford Tutor we provide personalized attention to each student.
+    <!-- Sign-In Modal -->
+    <div id="signInModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Sign In</h2>
+            <form id="signInForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+    </div>
 
-          We Guide the students to learn & achieve Better Grades! We offer Group Sessions and Individual Sessions where they can ask doubts without any hesitation. .
-          <ul>
-          <p><li>Skilled Instructors </p>
-          
-         <p><li> Home Work and Assignment Support</p>
-          
-         <p><li> A strong foundation</li></p>
-          
-         <p><li> A well-defined curriculum</li></p>
-          
-         <p><li> A refined learning methodology</li></p>
-          
-         <p><li> An excellent roster of partners in learning</li></b></p>
-          </ul>
-       
-</body>
+    <header>
+        <h1>Milford Tuition Center</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#login">Login / Create Account</a></li>
+            </ul>
+        </nav>
+    </header>
 
-</html>  
+    <main>
+        <section id="home">
+            <h2>Welcome</h2>
+            <p>This website was developed for testing and research purposes. Our goal is to provide a comprehensive overview of the services we offer and to give potential students and parents a clear understanding of what they can expect from Milford Tuition Center. We believe that education is the key to success, and we are committed to helping our students achieve their academic goals.</p>
+            <hr />
+        </section>
+
+        <section id="about">
+            <h2>Who Are We?</h2>
+            <p>We are <strong>Milford Tuition Center</strong>, operating in Midrand, Carlswald, <abbr title="Johannesburg">JHB</abbr>. Our center is designed to provide a nurturing and supportive environment where students can thrive academically. We understand that every student has unique learning needs, and we strive to cater to those needs through personalized instruction and tailored learning plans.</p>
+            <p>At Milford Tuition Center, we love to teach and inspire students to reach their full potential. Our experienced instructors are passionate about education and are committed to fostering a love for learning in each student. We believe that education should be engaging and enjoyable, and we work hard to create a positive learning atmosphere. Whether you are looking to improve your grades, prepare for exams, or simply enhance your knowledge, we are here to help you every step of the way.</p>
+            <hr />
+        </section>
+
+        <section id="services">
+            <h2>What Services Do We Provide?</h2>
+            <p>At <em>Milford Tuition Center</em>, we provide coaching classes that help students succeed in their studies. We offer personalized attention to each student, ensuring that they receive the support they need to excel academically.</p>
+            <p>We guide students to learn and achieve better grades! We offer group sessions and individual sessions where they can ask questions without any hesitation. Our services include:</p>
+            <ul>
+                <li>Skilled Instructors</li>
+                <li>Homework and Assignment Support</li>
+                <li>A Strong Foundation in Core Subjects</li>
+                <li>A Well-Defined Curriculum Tailored to Student Needs</li>
+                <li>A Refined Learning Methodology</li>
+                <li>An Excellent Roster of Partners in Learning</li>
+            </ul>
+            <hr />
+        </section>
+
+        <section id="testimonials">
+            <h2>What Our Students Say</h2>
+            <div class="testimonials">
+                <div class="testimonial">"Milford Tuition Center has transformed my learning experience. The instructors are incredibly supportive and knowledgeable!" - Sarah K.</div>
+                <div class="testimonial">"I improved my grades significantly thanks to the personalized attention I received. Highly recommend!" - John D.</div>
+                <div class="testimonial">"The environment is welcoming, and I feel comfortable asking questions. It's a great place to
+                    learn!" - Emily R.</div>
+               </div>
+               <hr />
+           </section>
+   
+           <section id="contact">
+               <h2>Contact Us</h2>
+               <p>If you have any questions or would like to learn more about our services, feel free to reach out!</p>
+               <div class="contact-info">Number: 0644061608 : Heena</div>
+               <div class="contact-info">Email: <a href="mailto:heenaus8@gmail.com">heenaus8@gmail.com</a></div>
+               <form>
+                   <label for="name">Name:</label>
+                   <input type="text" id="name" name="name" required>
+                   
+                   <label for="email">Email:</label>
+                   <input type="email" id="email" name="email" required>
+                   
+                   <label for="message">Message:</label>
+                   <textarea id="message" name="message" required></textarea>
+                   
+                   <button type="submit">Send Message</button>
+               </form>
+               <hr />
+           </section>
+   
+           <section id="login">
+               <h2>Login / Create Account</h2>
+               <form>
+                   <label for="username">Username:</label>
+                   <input type="text" id="username" name="username" required>
+                   
+                   <label for="password">Password:</label>
+                   <input type="password" id="password" name="password" required>
+                   
+                   <button type="submit">Login</button>
+               </form>
+               <p>Don't have an account? <a href="#create-account">Create one here</a>.</p>
+               <form id="create-account">
+                   <h3>Create Account</h3>
+                   <label for="new-username">Username:</label>
+                   <input type="text" id="new-username" name="new-username" required>
+                   
+                   <label for="new-email">Email:</label>
+                   <input type="email" id="new-email" name="new-email" required>
+                   
+                   <label for="new-password">Password:</label>
+                   <input type="password" id="new-password" name="new-password" required>
+                   
+                   <button type="submit">Create Account</button>
+               </form>
+               <hr />
+           </section>
+       </main>
+   
+       <footer>
+           <p>&copy; 2023 Milford Tuition Center. All rights reserved.</p>
+           <div class="social-media">
+               <a href="https://www.facebook.com" target="_blank">Facebook</a>
+               <a href="https://www.twitter.com" target="_blank">Twitter</a>
+               <a href="https://www.instagram.com" target="_blank">Instagram</a>
+           </div>
+       </footer>
+   
+       <script>
+           // Get the modal
+           var modal = document.getElementById("signInModal");
+   
+           // Get the button that opens the modal
+           var btn = document.getElementById("openModal");
+   
+           // Get the <span> element that closes the modal
+           var span = document.getElementById("closeModal");
+   
+           // When the user clicks the button, open the modal 
+           window.onload = function() {
+               modal.style.display = "block";
+           }
+   
+           // When the user clicks on <span> (x), close the modal
+           span.onclick = function() {
+               modal.style.display = "none";
+           }
+   
+           // When the user clicks anywhere outside of the modal, close it
+           window.onclick = function(event) {
+               if (event.target == modal) {
+                   modal.style.display = "none";
+               }
+           }
+       </script>
+   </body>
+   </html>
+   <section id="faq">
+     <h2>Frequently Asked Questions</h2>
+     <div class="faq-item">
+         <h3>What subjects do you offer tutoring in?</h3>
+         <p>We offer tutoring in a variety of subjects including Math, Science, English, and more. Please contact us for a full list of subjects.</p>
+     </div>
+     <div class="faq-item">
+         <h3>How do I sign up for classes?</h3>
+         <p>You can sign up for classes by filling out the contact form on our website or by calling us directly.</p>
+     </div>
+     <div class="faq-item">
+         <h3>What are your operating hours?</h3>
+         <p>We are open Monday to Friday from 9 AM to 6 PM and Saturday from 10 AM to 4 PM.</p>
+     </div>
+ </section>
+ <section id="blog">
+     <h2>Latest News and Articles</h2>
+     <article>
+         <h3>How to Prepare for Exams Effectively</h3>
+         <p>Exams can be stressful, but with the right preparation, you can excel. Here are some tips...</p>
+         <a href="#">Read more</a>
+     </article>
+     <article>
+         <h3>The Importance of Homework</h3>
+         <p>Homework is a crucial part of the learning process. It helps reinforce what you've learned in class...</p>
+         <a href="#">Read more</a>
+     </article>
+ </section>
